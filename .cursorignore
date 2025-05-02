@@ -1,0 +1,47 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+
+# Assets以外のすべてのフォルダを除外
+/*
+!/Assets/
+
+# Unity固有の除外パターン
+*.meta
+*.unity
+*.prefab
+*.mat
+*.fbx
+*.anim
+*.controller
+*.asset
+*.lighting
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tga
+*.tif
+*.tiff
+*.psd
+*.ai
+*.cubemap
+*.wav
+*.mp3
+*.ogg
+*.aif
+*.ttf
+*.otf
+*.physicMaterial
+*.physicsMaterial2D
+*.shadervariants
+*.mask
+*.brush
+*.terrainlayer
+*.mixer
+*.renderTexture
+*.spriteatlas
+*.guiskin
+*.playable
+*.flare
+*.fontsettings
+*.overrideController

@@ -1,0 +1,31 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float> heatmapTexture;
+float2 texSize;
+
+StructuredBuffer<float2> interactionPositions;
+int interactionCount;
+int activeInteractionCount;
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    int2 pixel = int2(id.xy);
+    float2 uv = pixel;
+    float heat = 0;
+    int count = min(activeInteractionCount, interactionCount);
+    count = max(0, count);
+
+    for(int i = 0; i < count; i++)
+    {
+        float2 pos = interactionPositions[i];
+        float dist = distance(uv, pos);
+        float radius = 6;
+        heat += saturate(1.0 - dist / radius);
+    }
+
+    heat = saturate(heat);
+    heatmapTexture[pixel] = heat;
+}
